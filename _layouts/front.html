@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>{% if page.title %}{{ page.title }} • {% endif %}{{ site.title }}</title>
+        <meta name="description" content="Machine Learning Club DIYA's official blog.'">
+        {% if page.tags %}
+        <meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
+        {% if page.author %}
+        {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.owner %}
+        {% endif %}
+        <!-- Twitter Cards -->
+        <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+        {% if page.excerpt %}<meta name="twitter:description" content="{{ page.excerpt | strip_html }}">{% endif %}
+        {% if site.owner.twitter %}<meta name="twitter:site" content="@{{ site.owner.twitter }}">{% endif %}
+        {% if author.twitter %}<meta name="twitter:creator" content="@{{ author.twitter }}">{% endif %}
+        {% if page.image.feature %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="{{ site.url }}/images/{{ page.image.feature }}">
+        {% else %}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:image" content="{% if page.image.thumb %}{{ site.url }}/images/{{ page.image.thumb }}{% else %}{{ site.url }}/images/{{ site.logo }}{% endif %}">
+        {% endif %}
+        <!-- Open Graph -->
+        <meta property="og:locale" content="{{ site.locale }}">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Home">
+        <meta property="og:description" content="Machine Learning Club DIYA's official blog">
+        <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+        <meta property="og:site_name" content="{{ site.title }}">
+        <meta property="og:image" content="/images/diya-og-preview.png">
+
+        <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+
+        <link href="{{ site.url }}/atom.xml" type="application/atom+xml" rel="alternate"
+            title="{{ site.title }} Atom Feed">
+        <link href="{{ site.url }}/sitemap.xml" type="application/xml" rel="sitemap" title="Sitemap">
+
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="cleartype" content="on">
+
+        <link rel="stylesheet" href="{{ site.url }}/css/main.css">
+        <!-- HTML5 Shiv and Media Query Support for IE -->
+        <!--[if lt IE 9]>
+          <script src="{{ site.url }}/js/vendor/html5shiv.min.js"></script>
+          <script src="{{ site.url }}/js/vendor/respond.min.js"></script>
+        <![endif]-->
+        <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+        <!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-mml-chtml.js"></script> -->
+
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+              TeX: {
+                equationNumbers: {
+                  autoNumber: "AMS"
+                }
+              },
+              tex2jax: {
+              inlineMath: [ ['$', '$'] ],
+              displayMath: [ ['$$', '$$'] ],
+              processEscapes: true,
+            }
+          });
+          MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+          MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+          </script>
+        <script type="text/javascript" async
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+            </script>
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.g_analytics_id }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', "{{ site.g_analytics_id }}");
+        </script>
+
+
+    </head>
+
+    <body id="js-body">
+        {% include browser-upgrade.html %}
+        {% include header.html %}
+        {% include navigation-sliding.html %}
+
+        <div class="page-lead" style="background-image:url({{ page.front_banner }});">
+            <div class="wrap page-lead-content">
+                <h1 onselect="return false" oncontextmenu="return false" ondragstart="return false" style="-ms-user-select:none; -moz-user-select:-moz-none; -khtml-user-select:none; -webkit-user-select:none; user-select:none;">DIYA</h1>
+                <h2 onselect="return false" oncontextmenu="return false" ondragstart="return false" style="-ms-user-select:none; -moz-user-select:-moz-none; -khtml-user-select:none; -webkit-user-select:none; user-select:none;">Machine Learning Club</h2>
+                <a href="https://gitlab.diyaml.com" class="btn-inverse" target="_blank"><img src="/images/gitlab-icon.png"
+                        alt="gitlab icon" height="18 rem" width="18 rem"> DIYA Gitlab</a>
+            </div>
+        </div>
+
+        <div id="page-wrapper">
+            <div id="main" role="main">
+                <div class="wrap">
+                    <div class="page-title">
+                        <h1> </h1>
+                    </div>
+                    <div class="archive-wrap">
+                        <div class="page-content">
+                            {{ content }}
+                        </div><!-- /.page-content -->
+                    </div class="archive-wrap"><!-- /.archive-wrap -->
+                </div><!-- /.wrap -->
+            </div>
+            {% include footer.html %}
+        </div>
+
+        <script src="{{ site.url }}/js/vendor/jquery-1.9.1.min.js"></script>
+        <script src="{{ site.url }}/js/main.js"></script>
+
+    </body>
+
+</html>

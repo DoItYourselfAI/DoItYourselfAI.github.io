@@ -1,0 +1,21 @@
+# Site navigation links
+
+- title: Who We Are
+  url: /introduction/
+  excerpt: "디야를 소개합니다."
+  image: layout_1.jpeg
+
+- title: Posts
+  url: /posts/
+  excerpt: "디야가 해온 것들"
+  image: layout_2.jpeg
+
+- title: Members
+  url: /members/
+  excerpt: "디야의 소중한 회원들"
+  image: layout_3.jpeg
+
+- title: Recruit
+  url: /recruit/
+  excerpt: "디야와 함께하고 싶다면"
+  image: layout_4.jpeg

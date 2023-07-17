@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /images/profile
+
+Sitemap: https://blog.diyaml.com/sitemap.xml

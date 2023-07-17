@@ -1,0 +1,92 @@
+---
+layout: default
+---
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+  .mySlides {
+    display: none;
+  }
+</style>
+
+<div id="main" role="main">
+  <div class="wrap" style="text-align:center;">
+    <div class="archive-wrap">
+      <div class="page-content">
+        <div class="w3-content w3-display-container">
+
+          {% assign end_idx = page.intro_images.size | minus: 1 %}
+          {% for idx in (0..end_idx) %}
+
+          <div class="w3-display-container mySlides">
+            <img src="{{page.intro_images[idx]}}" style="width:100%">
+            <div class="w3-display-topleft w3-large w3-container w3-padding-16 w3-black">
+              {{idx | plus: 1}}/{{page.intro_images.size}}
+            </div>
+          </div>
+
+          {% endfor %}
+
+          <button class="w3-button w3-display-left w3-black" height="100%" onclick="moveToLeftPage()">&#10094;</button>
+          <button class="w3-button w3-display-right w3-black" height="100%"
+            onclick="moveToRightPage()">&#10095;</button>
+
+        </div>
+
+        {{ content }}
+      </div>
+    </div class="archive-wrap">
+  </div>
+</div>
+
+
+
+<script>
+  // arrow key event listener
+  document.addEventListener('keydown', e => {
+    // left arrow
+    if (e.keyCode === 37) {
+      moveToLeftPage();
+    }
+    // right arrow
+    else if (e.keyCode === 39) {
+      moveToRightPage();
+    }
+  });
+
+  var currentSlideIndex = 0;
+  var slideElement = document.getElementsByClassName("mySlides");
+
+  initialSlide();
+
+  // on load show
+  function initialSlide() {
+    for (i = 0; i < slideElement.length; i++) {
+      slideElement[i].style.display = "none";
+    }
+    slideElement[0].style.display = "block";
+  }
+
+  function moveToRightPage() {
+    if (currentSlideIndex < slideElement.length - 1) {
+      // remove previous slide
+      slideElement[currentSlideIndex].style.display = "none"
+      currentSlideIndex += 1;
+      // show slide
+      slideElement[currentSlideIndex].style.display = "block"
+    }
+  }
+
+  function moveToLeftPage() {
+    if (currentSlideIndex > 0) {
+      // remove previous slide
+      slideElement[currentSlideIndex].style.display = "none"
+      currentSlideIndex -= 1;
+      // show slide
+      slideElement[currentSlideIndex].style.display = "block"
+    }
+  }
+
+</script>
