@@ -16,7 +16,7 @@ exerp: "본 포스트에서는 Graph Neural Network에 대한 배경과 MNIST Su
  그래프는 node 혹은 vertex라 불리는 점과, 이를 연결하는 link 혹은 edge라 불리는 선으로 구성된 자료 구조입니다. Node간의 연결 구조를 인접행렬 (adjacency matrix)로 표현하며, 각 구성요소들인 node와 link의 정보는 node feature matrix, link feature matrix 등으로 표현할 수 있습니다.
 
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled.png"  alt="pomme" width="360">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted.png"  alt="pomme" width="360">
 </p>
 
 GNN은 adjacency matrix와 feature matrix를 사용하여, 그래프 구조를 조금 더 쉽게 처리할 수 있는 인공 신경망입니다.
@@ -26,7 +26,7 @@ GNN은 adjacency matrix와 feature matrix를 사용하여, 그래프 구조를 �
  이번 절에서는 ‘A Comprehensive Survey on Graph Neural Networks’ 논문 의 내용을 바탕으로 GNN의 분류를 말씀드리고자 합니다. GNN은 크게 RecGNN (Recurrent GNN)과 ConvGNN (Convolutional GNN)으로 나뉘고 ConvGNN은 다시 한번 Spectral-based ConvGNN과 Spatial-based ConvGNN으로 나뉩니다. 각각 GNN의 대표적인 모델과 함께 벤 다이어그램으로 표현하면 다음과 같습니다. GCN 은 Spectral ConvGNN의 근사형태로 볼 수 있으며 동시에 Spatial ConvGNN으로도 해석할 수 있어, 둘 사이의 중간 연결다리의 역할을 합니다. 
 
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled2.PNG"  alt="pomme" width="360">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted2.PNG"  alt="pomme" width="360">
 </p>
 
 # Recurrent GNN
@@ -39,7 +39,9 @@ GNN은 adjacency matrix와 feature matrix를 사용하여, 그래프 구조를 �
 
  Spectral-based ConvGNN은 normalized laplacian matrix $L≡I-D^{-1/2} AD^{-1/2}$의 eigen vector들을 basis로 하는 graph fourier space에서 연산을 진행합니다. 이때 D는 degree matrix입니다. 이는 graph signal theory를 기반으로 하여 발전하였고, 일반적으로 다음과 같은 식으로 node의 상태를 update합니다.
 
-$$ x^{'}= Ug_\theta U^T x $$
+$$ 
+x^{'}= Ug_\theta U^T x
+$$
 
 위 식에서 U는 eigen vector들로 이루어진 fourier transform matrix이며 $g_θ$는 trainable parameter θ로 이루어진 함수입니다. U를 구하는데 계산 복잡도가 크기 때문에, 이를 어떻게 근사하는지, g_θ의 형태를 어떻게 하는지에 따라 ChebConv , ARMAConv , SGConv 등의 다양한 model들이 제안되었습니다. 
 Spectral-based ConvGNN의 장점은 고정된 구조의 그래프의 경우에는 graph-wise feature를 쉽게 추출할 수 있지만, 구조가 달라지는 데이터셋에 대해서는 fourier transform matrix U가 달라지기 때문에 잘 적용되지 않습니다. 또한 그래프에 방향성이 있는 directional graph의 경우, laplacian matrix가 symmetric하지 않기 때문에, 적용하기 어렵습니다.
@@ -71,14 +73,14 @@ Spatial-based ConvGNN은 인접행렬만을 이용하기 때문에 fourier trans
 Super pixel은 공통적인 특징을 가진 pixel들을 그룹화한 데이터입니다. 이를 위한 방법으로 그래프 기반 방법이나, 기울기 기반 방법 등을 사용할 수 있습니다. 다양한 알고리즘 가운데 가장 최근에 나온 SLIC 알고리즘 의 경우에는 5차원 공간 (2D 위치 및 3D RGB)에서 KNN-clustering을 통해 경계를 나누게 됩니다. 
 
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled3.PNG"  alt="pomme" width="360">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted3.PNG"  alt="pomme" width="360">
 <figcaption align = "center">SLIC superpixel 알고리즘으로 분할된 이미지</figcaption>
 </p>
 
  Super pixel 이미지를 K-Nearest Neighbor Graph 알고리즘을 통해 인접한 k개의 super pixel들을 연결함으로써 graph 형태의 데이터로 변환할 수 있습니다. 여기서 사용한 데이터셋은 MONET 의 저자들인 publish한 것으로, 그래프의 adjacency matrix와 노드로 취급되는 super pixel의 gray-scale color 및 2D position으로 구성되어 있습니다.
 
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled4.PNG"  alt="pomme" width="360">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted4.PNG"  alt="pomme" width="360">
 </p>
 
 # Graph Classification
@@ -92,7 +94,7 @@ GNN을 이용한 MNIST label classification의 process는 아래과 같습니다
 - 추출된 feature에 softmax 혹은 sigmoid function등을 적용 각 라벨에 대한 확률을 구한다. 
 
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled5.PNG"  alt="pomme" width="360">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted5.PNG"  alt="pomme" width="360">
 <figcaption align = "center">Graph Clasification Process. Image from documentation of DGL library(https://www.dgl.ai/)</figcaption>
 </p>
 
@@ -101,7 +103,7 @@ GNN을 이용한 MNIST label classification의 process는 아래과 같습니다
 Hierarchical Graph Neural Network 구조 에 대해 GCN, ChebConv, GAT를 사용하여 딥러닝 모델을 구성하였습니다. 
 
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled6.PNG"  alt="pomme" width="360">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted6.PNG"  alt="pomme" width="360">
 <figcaption align = "center">Hierarchical graph neural network의 구조. Residual connection과 global max pooling 연산을 통해 gradient vanishing을 방지하고, graph embedding에 대한 readout process를 진행하였다. </figcaption>
 </p>
 
@@ -118,7 +120,7 @@ Hierarchical Graph Neural Network 구조 에 대해 GCN, ChebConv, GAT를 사용
  이 외에도, Confusion matrix를 통해 잘못된 라벨을 예측한 퍼센트를 확인해본 결과, (2,5), (6,9)와 같이 rotation, flip 했을 때 구분할 수 없는 이미지들에 대해서 상대적으로 오차가 큰 것을 확인할 수 있었습니다.
 
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled7.PNG"  alt="pomme" width="360">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted7.PNG"  alt="pomme" width="360">
 <figcaption align = "center">Confusion matrix using ChebConv layer. (2,5)쌍과 (6,9) 쌍에서 상대적으로 큰 오차가 발생하는 것을 확인할 수 있다.</figcaption>
 </p>
 
@@ -133,7 +135,7 @@ Hierarchical Graph Neural Network 구조 에 대해 GCN, ChebConv, GAT를 사용
  이 절에서는 STGNN의 모델 중 대표적으로 아래와 같은 구조를 가지는 MTGNN 을 소개해 드리겠습니다. 
  
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled8.PNG"  alt="pomme" height="360">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted8.PNG"  alt="pomme" height="360">
 </p>
 
  만약 주어진 graph data가 없다면, 우선 graph learning layer를 통해 weighted directed graph를 inference합니다. 각 노드 쌍 $i$,$j$에 대하여, 이를 연결하는 link의 weight는 다음과 같은 식으로 계산됩니다. 이때 $M_i$,$M_j$는 각 노드의 embedding입니다. 
@@ -145,13 +147,13 @@ $$ReLU(tanh tanh (α(M_i M_j^T-M_j M_i^T) )$$
  Temporal convolution은 receptive field의 크기를 다르게 하여 다양한 scale의 temporal(time) effect를 고려할 수 있는 inception layer 를 기반으로 구성됩니다. 또한 computational cost를 낮추고 넓은 window를 볼 수 있는 dilation technique 를 사용하였습니다.
  
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled9.PNG"  alt="pomme" height="240">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted9.PNG"  alt="pomme" height="240">
 </p>
 
  Graph convolution의 경우, inception layer와 비슷한 개념을 공유하는 mix-hop layer 를 사용하였습니다. 이를 통해 한 노드로부터 다양한 거리(hop length)에 있는 노드들의 spatial한 영향을 고려할 수 있습니다. 
  
 <p align = "center">
-<img src="/images/2021TS-GNN-IMAGE-DIR/Untitled10.PNG"  alt="pomme" height="240">
+<img src="/images/2021TS-GNN-IMAGE-DIR/Untilted10.PNG"  alt="pomme" height="240">
 </p>
 
 # 마치며…
