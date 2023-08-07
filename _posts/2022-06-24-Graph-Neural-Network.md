@@ -4,8 +4,8 @@ title: "What is Graph Neural Network?"
 categories: teampost
 last_modified_at: 2022-06-24T22:00:00+09:00
 tags: [GNN]
-external_teaser: "/images/2021TS-GNN-IMAGE-DIR/head_image.png" 
-external_feature: "/images/2021TS-GNN-IMAGE-DIR/feature_image.PNG" 
+external_teaser: "/images/2021TS-GNN-IMAGE-DIR/head_image.PNG" 
+external_feature: "/images/2021TS-GNN-IMAGE-DIR/feature_image.png" 
 exerp: "본 포스트에서는 Graph Neural Network에 대한 배경과 MNIST SuperPixel에 대한 응용, 그리고 STGNN에 대해 소개하고자 합니다. "
 ---
 
@@ -52,7 +52,7 @@ Spatial-based ConvGNN은 adjacency matrix만을 사용하여 node의 feature를 
 
 $$ x_i^{'}=γ_\theta (x_i,\sum_{j∈N(i)} ϕ_Θ (x_i,x_j,e_ij ))  $$
 
-1. Node feature $x_i$, $x_j$ 와 link feature $e_{ij}$를 input으로 가지는 message function ϕ_Θ를 통해 message를 계산합니다.
+1. Node feature $x_i$, $x_j$ 와 link feature $e_{ij}$를 input으로 가지는 message function $ϕ_Θ$를 통해 message를 계산합니다.
 2. 모든 이웃한 node에서 만들어진 message들을 sum/mean/max 등의 permutation-invariant한 aggregation function으로 합칩니다.
 3. 2번의 결과, 합쳐진 message들과 node feature $x_i$를 input으로 가지는 update function $γ_Θ$  를 통해 다음 node의 feature를 계산합니다.
 
