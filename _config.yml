@@ -6,7 +6,7 @@ description: "Machine Learning Club DIYA's team blog"
 logo: logo.png # 120x120 px default image used for Twitter summary card
 teaser: teaser.jpg # 400x250 px default teaser image used in image archive grid
 locale: ko
-url: "https://blog.diyaml.com"
+url: "https://doityourselfai.github.io"
 feed:
   path: atom.xml
 

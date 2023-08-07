@@ -5,25 +5,25 @@ layout: default
 <div id="main" role="main">
 	<article class="wrap" itemscope itemtype="http://schema.org/Article" style="text-align: center;">
 		{% if page.image.feature %}
-			<div class="page-feature">
-				<div class="page-image">
-					<img src="{{ site.url }}/images/{{ page.image.feature }}" class="page-feature-image"
-						alt="{{ page.title }}" itemprop="image">
-					{% if page.image.credit %}
-						{% include image-credit.html %}
-					{% endif %}
-				</div><!-- /.page-image -->
-			</div><!-- /.page-feature -->
+		<div class="page-feature">
+			<div class="page-image">
+				<img src="{{ site.url }}/images/{{ page.image.feature }}" class="page-feature-image"
+					alt="{{ page.title }}" itemprop="image">
+				{% if page.image.credit %}
+				{% include image-credit.html %}
+				{% endif %}
+			</div><!-- /.page-image -->
+		</div><!-- /.page-feature -->
 		{% elsif page.external_feature %}
-			<div class="page-feature">
-				<div class="page-image">
-					<img src="{{ page.external_feature }}" class="page-feature-image" alt="{{ page.title }}"
-						itemprop="image">
-					{% if page.image.credit %}
-						{% include image-credit.html %}
-					{% endif %}
-				</div><!-- /.page-image -->
-			</div><!-- /.page-feature -->
+		<div class="page-feature">
+			<div class="page-image">
+				<img src="{{ page.external_feature }}" class="page-feature-image" alt="{{ page.title }}"
+					itemprop="image">
+				{% if page.image.credit %}
+				{% include image-credit.html %}
+				{% endif %}
+			</div><!-- /.page-image -->
+		</div><!-- /.page-feature -->
 		{% endif %}
 
 		{% include breadcrumbs.html %}
@@ -36,7 +36,7 @@ layout: default
 		<div class="inner-wrap" style="width:unset;float:unset;">
 			<div id="content" class="page-content" itemprop="articleBody">
 				<!-- get unique gisu number -->
-				{% assign gisuArr = site.data.members | map: "gisu" | uniq %}
+				{% assign gisuArr = site.data.members | map: "gisu" | uniq | reverse %}
 
 				{% for gisuNumber in gisuArr %}
 				<h2>{{ gisuNumber }}기</h2>
@@ -48,69 +48,67 @@ layout: default
 						<tr>
 							<td width="50%">
 								<!-- Member Image and Name -->
-								<img
-									{% if member.profile_image_filename == null %}
-										src="/images/profile/default.png"
-									{% else %}
-										src="/images/profile/{{ member.profile_image_filename }}"
-									{% endif %}
+								<img {% if member.profile_image_filename==null %} src="/images/profile/default.png" {%
+									else %} src="/images/profile/{{ member.profile_image_filename }}" {% endif %}
 									alt="profile-image" width="125rem" height="125rem" style="border-radius: 1.5rem;"
 									oncontextmenu="return false" ondragstart="return false" onselect="return false">
 								<br><br>
 								<b>{{ member.english_name }}</b>
 							</td>
-              <td width="50%" style="padding-left: 13%;padding-right: 4%;text-align: left;">
-                {% assign is_first_link_exists = false %}
-                <!-- Add members' personal linkes below -->
+							<td width="50%" style="padding-left: 13%;padding-right: 4%;text-align: left;">
+								{% assign is_first_link_exists = false %}
+								<!-- Add members' personal linkes below -->
 
 								<!-- Github -->
-                {% if member.github_username != null %}
-                  {% if is_first_link_exists %}
-                    <br>
-                  {% else %}
-                    {% assign is_first_link_exists = true %}
-                  {% endif %}
-									<img src="/images/github.png" alt="github-icon" style="height: 1rem;width: 1rem;">
-									<a href="https://github.com/{{ member.github_username }}" target="_blank">
-										{{member.github_username }}
-									</a>
+								{% if member.github_username != null %}
+								{% if is_first_link_exists %}
+								<br>
+								{% else %}
+								{% assign is_first_link_exists = true %}
+								{% endif %}
+								<img src="/images/github.png" alt="github-icon" style="height: 1rem;width: 1rem;">
+								<a href="https://github.com/{{ member.github_username }}" target="_blank">
+									{{member.github_username }}
+								</a>
 								{% endif %}
 
 								<!-- Gitlab -->
-                {% if member.gitlab_username != null %}
-                  {% if is_first_link_exists %}
-                    <br>
-                  {% else %}
-                    {% assign is_first_link_exists = true %}
-                  {% endif %}
-									<img src="/images/gitlab-icon.png" alt="gitlab-icon" style="height: 1rem;width: 1rem;">
-									<a href="https://gitlab.com/{{ member.gitlab_username }}" target="_blank">
-										{{ member.gitlab_username }}
-									</a>
+								{% if member.gitlab_username != null %}
+								{% if is_first_link_exists %}
+								<br>
+								{% else %}
+								{% assign is_first_link_exists = true %}
+								{% endif %}
+								<img src="/images/gitlab-icon.png" alt="gitlab-icon" style="height: 1rem;width: 1rem;">
+								<a href="https://gitlab.com/{{ member.gitlab_username }}" target="_blank">
+									{{ member.gitlab_username }}
+								</a>
 								{% endif %}
 
 								<!-- Diya Gitlab -->
 								{% if member.diya_gitlab_username != null %}
-                  {% if is_first_link_exists %}
-                    <br>
-                  {% else %}
-                    {% assign is_first_link_exists = true %}
-                  {% endif %}
-									<img src="/images/diya-gitlab-icon.png" alt="diya-gitlab-icon" style="height: 1rem;width: 1rem;">
-									<a href="https://gitlab.diyaml.com/{{ member.diya_gitlab_username }}" target="_blank">
-										{{ member.diya_gitlab_username }}
-									</a>
+								{% if is_first_link_exists %}
+								<br>
+								{% else %}
+								{% assign is_first_link_exists = true %}
+								{% endif %}
+								<img src="/images/diya-gitlab-icon.png" alt="diya-gitlab-icon"
+									style="height: 1rem;width: 1rem;">
+								<a href="https://gitlab.diyaml.com/{{ member.diya_gitlab_username }}" target="_blank">
+									{{ member.diya_gitlab_username }}
+								</a>
 								{% endif %}
 
 								<!-- Homepage -->
 								{% if member.homepage_url != null %}
-                  {% if is_first_link_exists %}
-                    <br>
-                  {% else %}
-                    {% assign is_first_link_exists = true %}
-                  {% endif %}
-									<img src="/images/homepage-icon.svg" alt="homepage-icon" style="height: 1rem;width: 1rem;">
-									<a href="{{ member.homepage_url }}" target="_blank"> Homepage</a>
+								{% if is_first_link_exists %}
+								<br>
+								{% else %}
+								{% assign is_first_link_exists = true %}
+								{% endif %}
+								<img src="/images/homepage-icon.svg" alt="homepage-icon"
+									style="height: 1rem;width: 1rem;">
+								<a href="{{ member.homepage_url }}" target="_blank"> Homepage</a>
 								{% endif %}
 							</td>
 						</tr>
@@ -123,21 +121,21 @@ layout: default
 				<hr />
 				<footer class="page-footer">
 					{% if page.categories %}
-						{% include page-author.html %}
+					{% include page-author.html %}
 					{% endif %}
 					{% include page-meta.html %}
 				</footer><!-- /.footer -->
 				<aside>
 					{% if page.comments == true %}
-						{% include comments.html %}
+					{% include comments.html %}
 					{% endif %}
 				</aside>
 			</div><!-- /.content -->
 		</div><!-- /.inner-wrap -->
 		{% if page.ads == true %}
-			<div class="ads">
-				{% include advertising.html %}
-			</div><!-- /.ads -->
+		<div class="ads">
+			{% include advertising.html %}
+		</div><!-- /.ads -->
 		{% endif %}
 	</article><!-- ./wrap -->
 </div><!-- /#main -->
