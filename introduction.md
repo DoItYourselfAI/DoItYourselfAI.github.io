@@ -3,7 +3,7 @@ layout: slide-intro
 permalink: /introduction/
 title: "Introduction"
 
-intro_images: ["/images/intro-2022-3.png", "/images/intro-2022-4.png", "/images/intro-2022-1.png", "/images/intro-2022-2.png", "/images/intro-2022-5.png"]
+intro_images: ["/images/intro-1.png", "/images/intro-2.png", "/images/intro-3.png", "/images/intro-4.png", "/images/intro-5.png"]
 
 ---
 
